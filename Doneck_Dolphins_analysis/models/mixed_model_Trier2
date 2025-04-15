@@ -1,0 +1,50 @@
+model{
+
+  for (i in useful){
+    Y[i] ~ dnorm(mu[i], lambda[id_player[i]])
+    mu[i] <- beta0 + b0[id_player[i]] + b0m[id_game[i]] + betaW * W[i] + betaC * Class[i] + betaH * home[i] +
+    (beta1 + b1[id_player[i]]) * (id_game[i] - 1) # first match t=0
+  }
+
+
+
+  
+  ## PRIORS
+
+  # lambda
+  
+  for (i in 1: N){
+    lambda[i] <- 1 / (sigma[i] * sigma[i])
+    sigma[i] ~ dunif(0, 2)
+  }
+    
+  
+  # mu prior
+  
+  beta0 ~ dnorm(0, 0.01)
+  beta1 ~ dnorm(0, 0.01)
+  betaC ~ dnorm(0, 0.01)
+  betaW ~ dnorm(0, 0.01)
+  betaH ~ dnorm(0, 0.01)
+  
+  # b0 prior
+  for (i in 1: N){
+    b0[i] ~ dnorm(0, lambda0)
+  }
+  lambda0 <- 1 / (sigma0 * sigma0)
+  sigma0 ~ dunif(0, 2)
+
+  for (i in 1: (max(id_game))){
+    b0m[i] ~ dnorm(0, lambda0m)
+  }
+  lambda0m <- 1 / (sigma0m * sigma0m)
+  sigma0m ~ dunif(0, 2)
+
+  # b1 prior
+  for (i in 1: N){
+    b1[i] ~ dnorm(0, lambda1)
+  }
+  lambda1 <- 1 / (sigma1 * sigma1)
+  sigma1 ~ dunif(0, 2)
+
+}
