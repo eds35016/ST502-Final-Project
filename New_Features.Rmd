@@ -13,47 +13,34 @@ knitr::opts_chunk$set(echo = TRUE)
 # Load libraries
 library(readxl)
 library(dplyr)
-#install.packages("writexl")  # only once
 library(writexl)
 
-
-# Step 1: Read in your data
-# Replace with your actual file name and sheet name if needed
+# Read in file
 df <- read_excel("Doneck_Dolphins_analysis/data/data_trier.xlsx")
 
-# Step 2: Estimate ORB (Offensive Rebounds)
-# Assume 25-30% of total rebounds are offensive (can tweak this to 0.30 if you prefer)
-df <- df %>%
-  mutate(ORB = 0.3 * rebounds)  # ORB = 30% of total rebounds (can change to 0.25)
+df$obs <- df$rebounds * 0.3
 
-# Step 3: Define functions to compute Points Produced and Possessions Used
-estimate_points_produced <- function(PTS, AST, ORB) {
-  # Points Produced = Points + assist bonus + ORB bonus
-  assist_bonus <- 0.5 * AST     # Simplified assist contribution
-  orb_bonus <- 0.25 * ORB       # Simplified ORB contribution
-  return(PTS + assist_bonus + orb_bonus)
+est_OeffR <- function(dataframe){
+  # estimate points produced
+  assist_bonus <- dataframe$assists * 0.5
+  orb_bonus <- dataframe$obs * 0.25
+  pts_prod <- dataframe$points + assist_bonus + orb_bonus
+  
+  # estimate possessions
+  posessions <- dataframe$FGA + (0.44 * dataframe$FTA) + dataframe$turnovers - orb_bonus
+  
+  # calculate offensive efficiency rating
+  OeffR = ifelse(posessions > 0, (pts_prod / posessions) * 100, NA_real_)
+  dataframe$ORtg <- OeffR
+  
+  return(dataframe)
+
 }
 
-estimate_possessions_used <- function(FGA, FTA, TOV, ORB) {
-  # Possessions Used = FGA + (0.44 * FTA) + TOV - (0.25 * ORB)
-  return(FGA + 0.44 * FTA + TOV - 0.25 * ORB)
-}
-
-# Step 4: Apply the functions and calculate ORtg
-df <- df %>%
-  rowwise() %>%
-  mutate(
-    Points_Produced = estimate_points_produced(points, assists, ORB),
-    Possessions_Used = estimate_possessions_used(FGA, FTA, turnovers, ORB),
-    ORtg = ifelse(Possessions_Used > 0, (Points_Produced / Possessions_Used) * 100, NA_real_)
-  ) %>%
-  ungroup()
-
-# Step 5: View results
-df %>% select(player, Points_Produced, Possessions_Used, ORtg)
-
-write_xlsx(df, path = "new_data_trier.xlsx")
-
+# Run function and create new excel file
+new_df <- est_OeffR(df)
+str(new_df)
+write_xlsx(new_df, path = "new_data_trier.xlsx")
 ```
 
 
