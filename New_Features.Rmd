@@ -18,6 +18,7 @@ library(writexl)
 # Read in file
 df <- read_excel("Doneck_Dolphins_analysis/data/data_trier.xlsx")
 
+# estimate offensive rebounds
 df$obs <- df$rebounds * 0.3
 
 est_OeffR <- function(dataframe){
