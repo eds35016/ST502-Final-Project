@@ -1,0 +1,59 @@
+---
+title: "502_Project"
+author: "Madeline Bursell"
+date: "2025-04-15"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+# Load libraries
+library(readxl)
+library(dplyr)
+#install.packages("writexl")  # only once
+library(writexl)
+
+
+# Step 1: Read in your data
+# Replace with your actual file name and sheet name if needed
+df <- read_excel("Doneck_Dolphins_analysis/data/data_trier.xlsx")
+
+# Step 2: Estimate ORB (Offensive Rebounds)
+# Assume 25-30% of total rebounds are offensive (can tweak this to 0.30 if you prefer)
+df <- df %>%
+  mutate(ORB = 0.3 * rebounds)  # ORB = 30% of total rebounds (can change to 0.25)
+
+# Step 3: Define functions to compute Points Produced and Possessions Used
+estimate_points_produced <- function(PTS, AST, ORB) {
+  # Points Produced = Points + assist bonus + ORB bonus
+  assist_bonus <- 0.5 * AST     # Simplified assist contribution
+  orb_bonus <- 0.25 * ORB       # Simplified ORB contribution
+  return(PTS + assist_bonus + orb_bonus)
+}
+
+estimate_possessions_used <- function(FGA, FTA, TOV, ORB) {
+  # Possessions Used = FGA + (0.44 * FTA) + TOV - (0.25 * ORB)
+  return(FGA + 0.44 * FTA + TOV - 0.25 * ORB)
+}
+
+# Step 4: Apply the functions and calculate ORtg
+df <- df %>%
+  rowwise() %>%
+  mutate(
+    Points_Produced = estimate_points_produced(points, assists, ORB),
+    Possessions_Used = estimate_possessions_used(FGA, FTA, turnovers, ORB),
+    ORtg = ifelse(Possessions_Used > 0, (Points_Produced / Possessions_Used) * 100, NA_real_)
+  ) %>%
+  ungroup()
+
+# Step 5: View results
+df %>% select(player, Points_Produced, Possessions_Used, ORtg)
+
+write_xlsx(df, path = "new_data_trier.xlsx")
+
+```
+
+
