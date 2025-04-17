@@ -104,7 +104,38 @@ sd <- apply(post_pred_combination_WIN, FUN =sd, MARGIN = 2)
 sort(means)
 
 
+# 4. True Shooting %---------------
+set.seed(9257)
+predictions <- model_prediction_type_sigmas(player = 1:9, type = 'TS', match = 19) #performance predictions
+load('./data/line_ups.RData')
+line_ups <- line_ups[which(line_ups$allowed==1),]
+line_ups <- data.frame(id=paste('L',1:91, sep = ''), line_ups)
 
+# Building matrix with posterior predictive sample of the lineups-
+post_pred_matrix <- matrix(data = NA, nrow = length(predictions[1,]), 
+                           ncol = length(line_ups[,1]))
+for(i in 1 : length(predictions[1,])){
+  for(j in 1 : length(line_ups[,1])){
+    post_pred_matrix[i, j] <- predictions[line_ups$X1[j], i] + #sample i of the prediction of the first player of Lj
+      predictions[line_ups$X2[j], i] + #sample i of the prediction of the 2nd player of Lj
+      predictions[line_ups$X3[j], i] + #sample i of the prediction of the 3rd player of Lj
+      predictions[line_ups$X4[j], i] + #sample i of the prediction of the 4th player of Lj
+      predictions[line_ups$X5[j], i] #sample i of the prediction of the 5th player of Lj
+  }
+}
+
+post_pred_combination_TS <- as.data.frame(post_pred_matrix)
+colnames(post_pred_combination_TS) <- paste('L',1:91, sep = '')
+
+
+hist(post_pred_combination_TS[,1])
+
+
+
+means <- apply(post_pred_combination_TS, FUN =mean, MARGIN = 2)
+sd <- apply(post_pred_combination_TS, FUN =sd, MARGIN = 2)
+
+sort(means)
 
 # Results (trabajar con las 5 primeras del articulo?)
 # EFF

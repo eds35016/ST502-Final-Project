@@ -1,6 +1,7 @@
 load('./results/lineups_PIR_sigmas.RData')
 load('./results/lineups_EFF_sigmas.RData')
 load('./results/lineups_Winscore_sigmas.RData')
+load('./results/lineups_TS_sigmas.RData')
 
 # 1. PIR line-ups---------
 sort(summary_PIR)
@@ -40,6 +41,17 @@ barplot(c(434/3000, 379/3000, 325/3000, 193/3000, 285/3000, 168/3000, 171/3000),
         cex.axis = 1.5, ylab = "Relative frequency",
         cex.lab=1.5, cex.main=1.5)
 
+# 4. True Shooting % line-ups---------
+sort(summary_TS)
+sum(summary_TS)
+
+barplot(c(434/3000, 379/3000, 325/3000, 193/3000, 285/3000, 168/3000, 171/3000), 
+        names=c(expression(L[1]), expression(L[2]), expression(L[3]), 
+                expression(L[4]), expression(L[5]), expression(L[6]), 
+                expression(L[7])),
+        col = rgb(0.8,0,0, .6), ylim = c(0, 0.2), cex.names = 1.5, 
+        cex.axis = 1.5, ylab = "Relative frequency",
+        cex.lab=1.5, cex.main=1.5)
 
 # PIR
 # l1: annabel, rossi, dirk, patrik, walter    L1

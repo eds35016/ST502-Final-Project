@@ -75,3 +75,21 @@ ggplot(Trier_data, aes(id_game, Winscore_min, group = Player, colour = Player)) 
   scale_colour_brewer(palette = "Set1", guide = guide_legend(ncol=1))+
   scale_x_continuous(breaks=seq(0, 18, 2))+
   scale_y_continuous(breaks=seq(-1.25, 2.25, .25), limits = c(-1, 2))
+
+
+# TrueShooting%-------------------
+
+ggplot(Trier_data, aes(id_game, TS_min, group = Player, colour = Player)) +
+  geom_point(size = 5) +
+  geom_line(size = 3, linetype = 'solid') +
+  labs(x="Game", y=expression("True Shooting % /min")) +
+  theme_classic(base_size = 20, base_line_size = 15/20) +
+  theme(#plot.background = element_rect(fill = rgb(212/255, 211/255, 217/255)),
+    #panel.background = element_rect(fill = rgb(212/255, 211/255, 217/255)),
+    panel.grid.major = element_line(colour = rgb(212/255, 211/255, 217/255)),
+    #legend.background = element_rect(fill = rgb(212/255, 211/255, 217/255)),
+    legend.position = "right",
+    legend.text = element_text( size = 14)) +
+  scale_colour_brewer(palette = "Set1", guide = guide_legend(ncol=1))+
+  scale_x_continuous(breaks=seq(0, 18, 2))+
+  scale_y_continuous(breaks=seq(-1.25, 2.25, .25), limits = c(-1, 2))

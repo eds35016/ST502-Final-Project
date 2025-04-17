@@ -1,6 +1,7 @@
 load('./results/lineups_EFF.RData')
 load('./results/lineups_PIR.RData')
 load('./results/lineups_winscore.RData')
+load('./results/lineups_TS.RData')
 
 
 
