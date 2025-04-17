@@ -32,19 +32,23 @@ trier_data$Winscore <- trier_data$points + trier_data$rebounds + .5 * trier_data
   trier_data$steals + .5 * trier_data$blocks - trier_data$turnovers - 
   .5 * trier_data$fouls - trier_data$FGA - .5 * trier_data$FTA # falta -FGA - .5 * FTA
 
+# 1. 4. True Shooting % -----------
+
+trier_data$TS <- (trier_data$points) / (2*(trier_data$FGA + (0.44*trier_data$FTA)))
 
 # Cleaning
 
 trier_data$EFF_per_min <- trier_data$EFF / trier_data$MP
 trier_data$PIR_per_min <- trier_data$PIR / trier_data$MP
 trier_data$Winscore_min <- trier_data$Winscore / trier_data$MP
+trier_data$TS_min <- trier_data$TS / trier_data$MP
 
 
 
 trier_data$EFF_per_min[is.nan(trier_data$EFF_per_min)]<-NA
 trier_data$PIR_per_min[is.nan(trier_data$PIR_per_min)]<-NA
 trier_data$Winscore_min[is.nan(trier_data$Winscore_min)]<-NA
-
+trier_data$TS_min[is.nan(trier_data$TS_min)]<-NA
 
 
 # 2. Factorizing home variable-------------
@@ -131,6 +135,7 @@ Trier_data <- data.frame(id_game = trier_data$id_game, player = trier_data$playe
                          PIR_per_min = trier_data$PIR_per_min, 
                          EFF_per_min = trier_data$EFF_per_min,
                          Winscore_min = trier_data$Winscore_min,
+                         TS_min = trier_data$TS_min,
                          home = trier_data$home, sex = trier_data$sex, class = trier_data$class)
 
 

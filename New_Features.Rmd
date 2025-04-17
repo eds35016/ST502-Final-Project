@@ -9,6 +9,7 @@ output: pdf_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+## Offensive Efficiency Rating
 ```{r}
 # Load libraries
 library(readxl)
@@ -40,8 +41,15 @@ est_OeffR <- function(dataframe){
 
 # Run function and create new excel file
 new_df <- est_OeffR(df)
-str(new_df)
-write_xlsx(new_df, path = "new_data_trier.xlsx")
 ```
 
+## True Shooting Percentage
+```{r}
+new_df$TS <- (new_df$points) / (2*(new_df$FGA + (0.44*new_df$FTA)))
+```
+
+```{r}
+# Write out new excel file with new metrics
+write_xlsx(new_df, path = "new_data_trier.xlsx")
+```
 
