@@ -1,4 +1,5 @@
-load('./data/Trier_data_clean_new.RData')
+#load('./data/Trier_data_clean_new.RData')
+load('/Users/maddybursell/Documents/ST 502/ST502-Final-Project/Doneck_Dolphins_analysis/data/Trier_data_clean_new.RData')
 set.seed(56888)
 
 # jags model PIR ----------------
@@ -21,7 +22,9 @@ parameters <- c( "beta0", "beta1", "betaW", "betaC", "betaH", "b0", "b0m",  "b1"
                  "sigma", "sigma0",  "sigma0m", "sigma1")
 
 
-results <- jags.model("./models/mixed_model_Trier2", data_model, inits, n.chains = 3,
+# results <- jags.model("./models/mixed_model_Trier2", data_model, inits, n.chains = 3,
+#                       n.adapt = 0)
+results <- jags.model("/Users/maddybursell/Documents/ST 502/ST502-Final-Project/Doneck_Dolphins_analysis/models/mixed_model_Trier2", data_model, inits, n.chains = 3,
                       n.adapt = 0)
 
 update(results, n.iter = 300000)
@@ -34,7 +37,8 @@ summary(rsamps)$quantiles
 summary(rsamps)$statistics[c(37:53),]
 summary(rsamps)$quantiles[37:53,]
 
-save(rsamps, file = './results/res_mixed_model_Trier_PIR2.RData')
+#save(rsamps, file = 'results/res_mixed_model_Trier_PIR2.RData')
+save(rsamps, file = '/Users/maddybursell/Documents/ST 502/ST502-Final-Project/Doneck_Dolphins_analysis/results/res_mixed_model_Trier_PIR2.RData')
 # load('./results/res_mixed_model_Trier_PIR2.RData')
 # there is differences among players in the overall level of performance
 
@@ -58,7 +62,9 @@ parameters <- c( "beta0", "beta1", "betaW", "betaC", "betaH", "b0", "b0m",  "b1"
                  "sigma", "sigma0",  "sigma0m", "sigma1")
 
 
-results <- jags.model("./models/mixed_model_Trier2", data_model, inits, n.chains = 3,
+# results <- jags.model("./models/mixed_model_Trier2", data_model, inits, n.chains = 3,
+#                       n.adapt = 0)
+results <- jags.model("/Users/maddybursell/Documents/ST 502/ST502-Final-Project/Doneck_Dolphins_analysis/models/mixed_model_Trier2", data_model, inits, n.chains = 3,
                       n.adapt = 0)
 
 update(results, n.iter = 300000)
@@ -69,7 +75,8 @@ summary(rsamps)$statistics[37:53,]
 summary(rsamps)$quantiles[37:53,]
 #dic <- dic.samples(result_ar1, n.iter = 100000, thin = 100)
 
-save(rsamps, file = './results/res_mixed_model_Trier_EFF2.RData')
+#save(rsamps, file = './results/res_mixed_model_Trier_EFF2.RData')
+save(rsamps, file = '/Users/maddybursell/Documents/ST 502/ST502-Final-Project/Doneck_Dolphins_analysis/results/res_mixed_model_Trier_EFF2.RData')
 # load('./results/res_mixed_model_Trier_EFF.RData')
 # there is differences among players in the overall level of performance
 
@@ -93,7 +100,9 @@ parameters <- c( "beta0", "beta1", "betaW", "betaC", "betaH", "b0", "b0m",  "b1"
                  "sigma", "sigma0",  "sigma0m", "sigma1")
 
 
-results <- jags.model("./models/mixed_model_Trier2", data_model, inits, n.chains = 3,
+# results <- jags.model("./models/mixed_model_Trier2", data_model, inits, n.chains = 3,
+#                       n.adapt = 0)
+results <- jags.model("/Users/maddybursell/Documents/ST 502/ST502-Final-Project/Doneck_Dolphins_analysis/models/mixed_model_Trier2", data_model, inits, n.chains = 3,
                       n.adapt = 0)
 
 update(results, n.iter = 300000)
@@ -104,7 +113,9 @@ summary(rsamps)$statistics[37:53,]
 summary(rsamps)$quantiles[37:53,]
 #dic <- dic.samples(result_ar1, n.iter = 100000, thin = 100)
 
-save(rsamps, file = './results/res_mixed_model_Trier_Winscore2.RData')
+#save(rsamps, file = './results/res_mixed_model_Trier_Winscore2.RData')
+save(rsamps, file = '/Users/maddybursell/Documents/ST 502/ST502-Final-Project/Doneck_Dolphins_analysis/results/res_mixed_model_Trier_Winscore2.RData')
+
 # load('./results/res_mixed_model_Trier_Winscore2.RData')
 
 # jags model True Shooting % ----------------
@@ -127,7 +138,9 @@ parameters <- c( "beta0", "beta1", "betaW", "betaC", "betaH", "b0", "b0m",  "b1"
                  "sigma", "sigma0",  "sigma0m", "sigma1")
 
 
-results <- jags.model("./models/mixed_model_Trier2", data_model, inits, n.chains = 3,
+# results <- jags.model("./models/mixed_model_Trier2", data_model, inits, n.chains = 3,
+#                       n.adapt = 0)
+results <- jags.model("/Users/maddybursell/Documents/ST 502/ST502-Final-Project/Doneck_Dolphins_analysis/models/mixed_model_Trier2", data_model, inits, n.chains = 3,
                       n.adapt = 0)
 
 update(results, n.iter = 300000)
@@ -138,5 +151,6 @@ summary(rsamps)$statistics[37:53,]
 summary(rsamps)$quantiles[37:53,]
 #dic <- dic.samples(result_ar1, n.iter = 100000, thin = 100)
 
-save(rsamps, file = './results/res_mixed_model_Trier_TS2.RData')
+#save(rsamps, file = './results/res_mixed_model_Trier_TS2.RData')
+save(rsamps, file = '/Users/maddybursell/Documents/ST 502/ST502-Final-Project/Doneck_Dolphins_analysis/results/res_mixed_model_Trier_TS2.RData')
 # load('./results/res_mixed_model_Trier_TS2.RData')

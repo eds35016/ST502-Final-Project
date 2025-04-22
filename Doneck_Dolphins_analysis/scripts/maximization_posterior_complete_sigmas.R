@@ -1,8 +1,9 @@
 library(lpSolve)
-source('./functions/model_prediction_type_sigmas.R')
+#source('./functions/model_prediction_type_sigmas.R')
+source('/Users/maddybursell/Documents/ST 502/ST502-Final-Project/Doneck_Dolphins_analysis/functions/model_prediction_type_sigmas.R')
 
 set.seed(9257)
-predictions <- model_prediction_type_sigmas(player = 1:9, type = 'EFF', match = 19)
+predictions <- model_prediction_type_sigmas(player = 1:9, type = 'TS', match = 19)
 
 posterior <- c()
 for(i in 1 : length(predictions[1, ])){
@@ -134,9 +135,9 @@ for(i in 1 : length(predictions[1, ])){
   posterior[i] <- sol[val == max(val)]
 }
 
-summary_EFF <- summary(as.factor(posterior))
+summary_TS <- summary(as.factor(posterior))
 levels(as.factor(posterior))
-sort(summary_EFF)
-posterior_EFF <- posterior
-save(summary_EFF, posterior_EFF, 
-     file = './results/lineups_EFF_sigmas.RData')
+sort(summary_TS)
+posterior_TS <- posterior
+save(summary_TS, posterior_TS, 
+     file = '/Users/maddybursell/Documents/ST 502/ST502-Final-Project/Doneck_Dolphins_analysis/results/lineups_TS_sigmas.RData')

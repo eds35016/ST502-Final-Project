@@ -1,9 +1,11 @@
-load('./data/Trier_data_clean_new.RData')
+#load('./data/Trier_data_clean_new.RData')
+load('/Users/maddybursell/Documents/ST 502/ST502-Final-Project/Doneck_Dolphins_analysis/data/Trier_data_clean_new.RData')
 library(lpSolve)
 
 data_matrix_EFF <- matrix(data = NA, nrow = 9, ncol = 18)
 data_matrix_PIR <- matrix(data = NA, nrow = 9, ncol = 18)
 data_matrix_WIN <- matrix(data = NA, nrow = 9, ncol = 18)
+data_matrix_TS <- matrix(data = NA, nrow = 9, ncol = 18)
 
 # 1. EFF-------------------
 for(i in 1 : length(Trier_data$id_game)){
@@ -290,7 +292,8 @@ mean_EFF <- apply(data_matrix_EFF, FUN = mean, MARGIN = 1, na.rm=TRUE) #hacer pa
 
 # PERFORMANCES OF THE LINEUPS
 
-load('./data/line_ups.RData')
+#load('./data/line_ups.RData')
+load('/Users/maddybursell/Documents/ST 502/ST502-Final-Project/Doneck_Dolphins_analysis/data/line_ups.RData')
 line_ups <- line_ups[which(line_ups$allowed==1),]
 line_ups <- data.frame(id=paste('L',1:91, sep = ''), line_ups)
 

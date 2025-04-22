@@ -1,11 +1,13 @@
 library(lpSolve)
-source('./functions/model_prediction_type_sigmas.R')
+#source('./functions/model_prediction_type_sigmas.R')
+source('/Users/maddybursell/Documents/ST 502/ST502-Final-Project/Doneck_Dolphins_analysis/functions/model_prediction_type_sigmas.R')
 
 
 # 1. EFF---------------
 set.seed(9257)
 predictions <- model_prediction_type_sigmas(player = 1:9, type = 'EFF', match = 19) #performance predictions
-load('./data/line_ups.RData')
+#load('./data/line_ups.RData')
+load('/Users/maddybursell/Documents/ST 502/ST502-Final-Project/Doneck_Dolphins_analysis/data/line_ups.RData')
 line_ups <- line_ups[which(line_ups$allowed==1),]
 line_ups <- data.frame(id=paste('L',1:91, sep = ''), line_ups)
 
@@ -39,7 +41,8 @@ sort(means)
 # 2. PIR---------------
 set.seed(9257)
 predictions <- model_prediction_type_sigmas(player = 1:9, type = 'PIR', match = 19) #performance predictions
-load('./data/line_ups.RData')
+#load('./data/line_ups.RData')
+load('/Users/maddybursell/Documents/ST 502/ST502-Final-Project/Doneck_Dolphins_analysis/data/line_ups.RData')
 line_ups <- line_ups[which(line_ups$allowed==1),]
 line_ups <- data.frame(id=paste('L',1:91, sep = ''), line_ups)
 
@@ -73,7 +76,8 @@ sort(means)
 # 3. Winscore---------------
 set.seed(9257)
 predictions <- model_prediction_type_sigmas(player = 1:9, type = 'Winscore', match = 19) #performance predictions
-load('./data/line_ups.RData')
+#load('./data/line_ups.RData')
+load('/Users/maddybursell/Documents/ST 502/ST502-Final-Project/Doneck_Dolphins_analysis/data/line_ups.RData')
 line_ups <- line_ups[which(line_ups$allowed==1),]
 line_ups <- data.frame(id=paste('L',1:91, sep = ''), line_ups)
 
@@ -107,7 +111,8 @@ sort(means)
 # 4. True Shooting %---------------
 set.seed(9257)
 predictions <- model_prediction_type_sigmas(player = 1:9, type = 'TS', match = 19) #performance predictions
-load('./data/line_ups.RData')
+#load('./data/line_ups.RData')
+load('/Users/maddybursell/Documents/ST 502/ST502-Final-Project/Doneck_Dolphins_analysis/data/line_ups.RData')
 line_ups <- line_ups[which(line_ups$allowed==1),]
 line_ups <- data.frame(id=paste('L',1:91, sep = ''), line_ups)
 

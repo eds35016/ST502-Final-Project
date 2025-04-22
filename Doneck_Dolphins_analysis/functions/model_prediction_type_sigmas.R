@@ -4,11 +4,14 @@ model_prediction_type_sigmas <- function(player = players, type="PIR", match = t
   library(rjags)
   library(MCMCvis)
   
-  #type in ("PIR", "EFF", "Winscore")
+  #type in ("PIR", "EFF", "Winscore", "TS")
   #input----------
   
-  load(paste('./results/res_mixed_model_Trier_', type, '2.RData', sep = ''))
-  load('./data/Trier_data_clean_new.RData')
+  # load(paste('./results/res_mixed_model_Trier_', type, '2.RData', sep = ''))
+  # load('./data/Trier_data_clean_new.RData')
+  
+  load(paste('/Users/maddybursell/Documents/ST 502/ST502-Final-Project/Doneck_Dolphins_analysis/results/res_mixed_model_Trier_', type, '2.RData', sep = ''))
+  load('/Users/maddybursell/Documents/ST 502/ST502-Final-Project/Doneck_Dolphins_analysis/data/Trier_data_clean_new.RData')
   
   
   sex <- c()

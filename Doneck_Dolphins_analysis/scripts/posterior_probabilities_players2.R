@@ -1,8 +1,12 @@
-load('./results/lineups_EFF.RData')
-load('./results/lineups_PIR.RData')
-load('./results/lineups_winscore.RData')
-load('./results/lineups_TS.RData')
+# load('./results/lineups_EFF.RData')
+# load('./results/lineups_PIR.RData')
+# load('./results/lineups_winscore.RData')
+# load('./results/lineups_TS.RData')
 
+load('/Users/maddybursell/Documents/ST 502/ST502-Final-Project/Doneck_Dolphins_analysis/results/lineups_EFF.RData')
+load('/Users/maddybursell/Documents/ST 502/ST502-Final-Project/Doneck_Dolphins_analysis/results/lineups_PIR.RData')
+load('/Users/maddybursell/Documents/ST 502/ST502-Final-Project/Doneck_Dolphins_analysis/results/lineups_winscore.RData')
+load('/Users/maddybursell/Documents/ST 502/ST502-Final-Project/Doneck_Dolphins_analysis/results/lineups_TS.RData')
 
 
 # Probability of being in the lineup

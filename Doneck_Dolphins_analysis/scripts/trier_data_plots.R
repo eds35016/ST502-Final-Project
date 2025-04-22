@@ -1,4 +1,6 @@
-load('./data/Trier_data_clean.RData')
+setwd("/Users/maddybursell/Documents/ST 502/ST502-Final-Project/Doneck_Dolphins_analysis/data")
+load('./data/Trier_data_clean_new.RData')
+#load('/Users/maddybursell/Documents/ST 502/ST502-Final-Project/Doneck_Dolphins_analysis/data/Trier_data_clean_new.RData')
 library(ggplot2)
 
 Trier_data$id_player <- as.factor(Trier_data$id_player)
