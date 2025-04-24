@@ -54,10 +54,10 @@ GAME_IDS = [
 # !! - For now, only look at the primary starting lineup
 PLAYERS = [
     "Ben Middlebrooks",
-    "Breon Pass",
-    "Michael O'Connell",
+    "Trey Parker",
+    "Dennis Parker Jr.",
     "Dontrez Styles",
-    "Jaden Taylor"
+    "Jayden Taylor"
     # etc.
 ]
 
