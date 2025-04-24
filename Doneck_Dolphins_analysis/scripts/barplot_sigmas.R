@@ -50,7 +50,8 @@ barplot(c(434/3000, 379/3000, 325/3000, 193/3000, 285/3000, 168/3000, 171/3000),
 sort(summary_TS)
 sum(summary_TS)
 
-barplot(c(434/3000, 379/3000, 325/3000, 193/3000, 285/3000, 168/3000, 171/3000), 
+# Not positive that I am usually the correct counts
+barplot(c(130/3000, 84/3000, 78/3000, 76/3000, 74/3000, 68/3000, 68/3000), 
         names=c(expression(L[1]), expression(L[2]), expression(L[3]), 
                 expression(L[4]), expression(L[5]), expression(L[6]), 
                 expression(L[7])),
