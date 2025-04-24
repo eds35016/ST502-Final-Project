@@ -1,6 +1,6 @@
 setwd("/Users/maddybursell/Documents/ST 502/ST502-Final-Project/Doneck_Dolphins_analysis/data")
-load('./data/Trier_data_clean_new.RData')
-#load('/Users/maddybursell/Documents/ST 502/ST502-Final-Project/Doneck_Dolphins_analysis/data/Trier_data_clean_new.RData')
+#load('./data/Trier_data_clean_new.RData')
+load('/Users/maddybursell/Documents/ST 502/ST502-Final-Project/Doneck_Dolphins_analysis/data/Trier_data_clean_new.RData')
 library(ggplot2)
 
 Trier_data$id_player <- as.factor(Trier_data$id_player)
@@ -95,3 +95,17 @@ ggplot(Trier_data, aes(id_game, TS_min, group = Player, colour = Player)) +
   scale_colour_brewer(palette = "Set1", guide = guide_legend(ncol=1))+
   scale_x_continuous(breaks=seq(0, 18, 2))+
   scale_y_continuous(breaks=seq(-1.25, 2.25, .25), limits = c(-1, 2))
+
+ggplot(Trier_data, aes(id_game, TS_min, group = Player, colour = Player)) +
+  geom_point(size = 5) +
+  geom_line(size = 3, linetype = 'solid') +
+  labs(x = "Game", y = expression("True Shooting % /min")) +
+  theme_classic(base_size = 20, base_line_size = 15/20) +
+  theme(
+    panel.grid.major = element_line(colour = rgb(212/255, 211/255, 217/255)),
+    legend.position = "right",
+    legend.text = element_text(size = 14)
+  ) +
+  scale_colour_brewer(palette = "Set1", guide = guide_legend(ncol = 1)) +
+  scale_x_continuous(breaks = seq(0, 18, 2)) +
+  scale_y_continuous(breaks = seq(-1, 1, 0.25), limits = c(-1, 1))

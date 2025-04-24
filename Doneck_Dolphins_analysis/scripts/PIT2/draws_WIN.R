@@ -3,7 +3,7 @@
 library(rjags)
 library(MCMCvis)
 
-load('./results/res_mixed_model_Trier_Winscore2.RData') #rsamps
+load('/Users/maddybursell/Documents/ST 502/ST502-Final-Project/Doneck_Dolphins_analysis/results/res_mixed_model_Trier_Winscore2.RData') #rsamps
 
 n <- 9
 matches <- 18

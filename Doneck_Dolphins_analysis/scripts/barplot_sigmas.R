@@ -12,7 +12,7 @@ load('/Users/maddybursell/Documents/ST 502/ST502-Final-Project/Doneck_Dolphins_a
 sort(summary_PIR)
 sum(summary_PIR)
 
-barplot(c(546/3000, 290/3000, 312/3000, 242/3000, 142/3000, 119/3000, 131/3000), 
+barplot(c(500/3000, 307/3000, 296/3000, 237/3000, 144/3000, 134/3000, 130/3000), 
         names=c(expression(L[1]), expression(L[2]), expression(L[3]), 
                 expression(L[4]), expression(L[5]), expression(L[6]), 
                 expression(L[7])),
@@ -25,7 +25,7 @@ barplot(c(546/3000, 290/3000, 312/3000, 242/3000, 142/3000, 119/3000, 131/3000),
 sort(summary_EFF)
 sum(summary_EFF)
 
-barplot(c(599/3000, 347/3000, 313/3000, 203/3000, 156/3000, 133/3000, 130/3000), 
+barplot(c(582/3000, 323/3000, 310/3000, 233/3000, 156/3000, 144/3000, 117/3000), 
         names=c(expression(L[1]), expression(L[2]), expression(L[3]), 
                 expression(L[4]), expression(L[5]), expression(L[6]), 
                 expression(L[7])),
@@ -38,7 +38,7 @@ barplot(c(599/3000, 347/3000, 313/3000, 203/3000, 156/3000, 133/3000, 130/3000),
 sort(summary_Winscore)
 sum(summary_Winscore)
 
-barplot(c(434/3000, 379/3000, 325/3000, 193/3000, 285/3000, 168/3000, 171/3000), 
+barplot(c(523/3000, 416/3000, 338/3000, 315/3000, 202/3000, 158/3000, 157/3000), 
         names=c(expression(L[1]), expression(L[2]), expression(L[3]), 
                 expression(L[4]), expression(L[5]), expression(L[6]), 
                 expression(L[7])),
@@ -51,7 +51,7 @@ sort(summary_TS)
 sum(summary_TS)
 
 # Not positive that I am usually the correct counts
-barplot(c(130/3000, 84/3000, 78/3000, 76/3000, 74/3000, 68/3000, 68/3000), 
+barplot(c(126/3000, 81/3000, 79/3000, 72/3000, 71/3000, 70/3000, 69/3000), 
         names=c(expression(L[1]), expression(L[2]), expression(L[3]), 
                 expression(L[4]), expression(L[5]), expression(L[6]), 
                 expression(L[7])),

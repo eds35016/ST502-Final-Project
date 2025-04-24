@@ -1,5 +1,5 @@
 library(rjags)
-source('/Users/maddybursell/Documents/ST 502/ST502-Final-Project/Doneck_Dolphins_analysis/scripts/PIT2/draws_EFF.R') #saved in draws_posterior
+source('/Users/maddybursell/Documents/ST 502/ST502-Final-Project/Doneck_Dolphins_analysis/scripts/PIT2/draws_TS.R') #saved in draws_posterior
 
 load('/Users/maddybursell/Documents/ST 502/ST502-Final-Project/Doneck_Dolphins_analysis/data/Trier_data_clean_new.RData')
 Trier_data$home <- as.numeric(Trier_data$home) # was character 
@@ -26,7 +26,7 @@ log_weights_i <- function(data_i, draws, log = TRUE) {
     
   }
   
-  log_likelihood <- dnorm(x = data_i$EFF_per_min, mean = mu, sd = sigma, 
+  log_likelihood <- dnorm(x = data_i$PIR_per_min, mean = mu, sd = sigma, 
                           log = log)
   
   inv_loglik <- - log_likelihood
@@ -74,7 +74,7 @@ for(obs in 1 : size_data){
     
   }
   
-  PIT[obs] <- sum(y_pred[obs,] <= Trier_data$EFF_per_min[obs]) / size_pred
+  PIT[obs] <- sum(y_pred[obs,] <= Trier_data$PIR_per_min[obs]) / size_pred
 }
 
 #plots
@@ -84,5 +84,5 @@ par(mar=c(5,5,2,2)+0.1)
 plot(Trier_data$id_game, PIT, cex.lab=1.5, cex.axis=1.5, main = NULL,
      xlab = 'IAP', lwd = 3)
 
-PIT_EFF <- PIT
-save(PIT_EFF, file = '/Users/maddybursell/Documents/ST 502/ST502-Final-Project/Doneck_Dolphins_analysis/results/PIT_EFF2.RData')
+PIT_PIR <- PIT
+save(PIT_PIR, file = '/Users/maddybursell/Documents/ST 502/ST502-Final-Project/Doneck_Dolphins_analysis/results/PIT_TS2.RData')

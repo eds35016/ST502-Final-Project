@@ -3,14 +3,14 @@
 # load('./results/lineups_winscore.RData')
 # load('./results/lineups_TS.RData')
 
-load('/Users/maddybursell/Documents/ST 502/ST502-Final-Project/Doneck_Dolphins_analysis/results/lineups_EFF.RData')
-load('/Users/maddybursell/Documents/ST 502/ST502-Final-Project/Doneck_Dolphins_analysis/results/lineups_PIR.RData')
-load('/Users/maddybursell/Documents/ST 502/ST502-Final-Project/Doneck_Dolphins_analysis/results/lineups_winscore.RData')
-load('/Users/maddybursell/Documents/ST 502/ST502-Final-Project/Doneck_Dolphins_analysis/results/lineups_TS.RData')
+load('/Users/maddybursell/Documents/ST 502/ST502-Final-Project/Doneck_Dolphins_analysis/results/lineups_EFF_sigmas.RData')
+#load('/Users/maddybursell/Documents/ST 502/ST502-Final-Project/Doneck_Dolphins_analysis/results/lineups_PIR_sigmas.RData')
+#load('/Users/maddybursell/Documents/ST 502/ST502-Final-Project/Doneck_Dolphins_analysis/results/lineups_winscore_sigmas.RData')
+#load('/Users/maddybursell/Documents/ST 502/ST502-Final-Project/Doneck_Dolphins_analysis/results/lineups_TS_sigmas.RData')
 
 
 # Probability of being in the lineup
-posterior <- posterior_PIR
+posterior <- posterior_EFF
 Lineups <- matrix(data = NA, nrow = 3000, ncol = 9)
 for(i in 1 : 3000){ #all the lineups
   Lineups[i, ] <- as.numeric(substring(posterior[i], seq(1,17, by = 2), 

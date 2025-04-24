@@ -1,10 +1,10 @@
 library(rjags)
-source('./scripts/PIT2/draws_WIN.R') #saved in draws_posterior
+source('/Users/maddybursell/Documents/ST 502/ST502-Final-Project/Doneck_Dolphins_analysis/scripts/PIT2/draws_WIN.R') #saved in draws_posterior
 
-load('./data/Trier_data_clean_new.RData')
+load('/Users/maddybursell/Documents/ST 502/ST502-Final-Project/Doneck_Dolphins_analysis/data/Trier_data_clean_new.RData')
 Trier_data$home <- as.numeric(Trier_data$home) # was character 
 
-source('./functions/suma_logaritmica_de_elementos.R') #function
+source('/Users/maddybursell/Documents/ST 502/ST502-Final-Project/Doneck_Dolphins_analysis/functions/suma_logaritmica_de_elementos.R') #function
 
 size_data <- dim(Trier_data)[1]
 size_draws <- dim(draws_posterior)[1]
@@ -85,4 +85,4 @@ plot(Trier_data$id_game, PIT, cex.lab=1.5, cex.axis=1.5, main = NULL,
      xlab = 'IAP', lwd = 3)
 
 PIT_WIN <- PIT
-save(PIT_WIN, file = './results/PIT_WIN2.RData')
+save(PIT_WIN, file = '/Users/maddybursell/Documents/ST 502/ST502-Final-Project/Doneck_Dolphins_analysis/results/PIT_WIN2.RData')

@@ -1,8 +1,8 @@
 library("readxl")
 # xls files
 # Use setwd("/Users/maddybursell/Documents/ST 502/ST502-Final-Project/Doneck_Dolphins_analysis/scripts")
-trier_data <- read_excel("../data/data_trier.xlsx")
-#trier_data <- read_excel("/Users/maddybursell/Documents/ST 502/ST502-Final-Project/Doneck_Dolphins_analysis/data/data_trier.xlsx")
+#trier_data <- read_excel("../data/data_trier.xlsx")
+trier_data <- read_excel("/Users/maddybursell/Documents/ST 502/ST502-Final-Project/Doneck_Dolphins_analysis/data/data_trier.xlsx")
 MP <- gsub("^.*?00","00",as.character(trier_data$MP))
 
 parse_time <- function(x) {
@@ -152,4 +152,5 @@ library(GLDEX)
 
 Trier_data$id_player <- as.numeric(as.factor(as.character(Trier_data$player)))
 
-save(Trier_data, file = '../data/Trier_data_clean_new.RData')
+#save(Trier_data, file = '../data/Trier_data_clean_new.RData')
+save(Trier_data, file = '/Users/maddybursell/Documents/ST 502/ST502-Final-Project/Doneck_Dolphins_analysis/data/Trier_data_clean_new.RData')

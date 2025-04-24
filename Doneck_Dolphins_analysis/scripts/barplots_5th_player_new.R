@@ -1,8 +1,13 @@
 # 1. Loading data-----------
-load('./results/lineups_PIR_sigmas.RData')
-load('./results/lineups_EFF_sigmas.RData')
-load('./results/lineups_Winscore_sigmas.RData')
-load('./results/lineups_TS_sigmas.RData')
+#load('./results/lineups_PIR_sigmas.RData')
+#load('./results/lineups_EFF_sigmas.RData')
+#load('./results/lineups_Winscore_sigmas.RData')
+#load('./results/lineups_TS_sigmas.RData')
+
+load('/Users/maddybursell/Documents/ST 502/ST502-Final-Project/Doneck_Dolphins_analysis/results/lineups_PIR_sigmas.RData')
+load('/Users/maddybursell/Documents/ST 502/ST502-Final-Project/Doneck_Dolphins_analysis/results/lineups_EFF_sigmas.RData')
+load('/Users/maddybursell/Documents/ST 502/ST502-Final-Project/Doneck_Dolphins_analysis/results/lineups_Winscore_sigmas.RData')
+load('/Users/maddybursell/Documents/ST 502/ST502-Final-Project/Doneck_Dolphins_analysis/results/lineups_TS_sigmas.RData')
 
 
 # 2. Posterior probability of compatibility-----------
