@@ -84,5 +84,5 @@ par(mar=c(5,5,2,2)+0.1)
 plot(Trier_data$id_game, PIT, cex.lab=1.5, cex.axis=1.5, main = NULL,
      xlab = 'IAP', lwd = 3)
 
-PIT_PIR <- PIT
-save(PIT_PIR, file = '/Users/maddybursell/Documents/ST 502/ST502-Final-Project/Doneck_Dolphins_analysis/results/PIT_TS2.RData')
+PIT_TS <- PIT
+save(PIT_TS, file = '/Users/maddybursell/Documents/ST 502/ST502-Final-Project/Doneck_Dolphins_analysis/results/PIT_TS2.RData')

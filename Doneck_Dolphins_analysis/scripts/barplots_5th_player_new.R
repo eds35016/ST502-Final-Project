@@ -13,7 +13,7 @@ load('/Users/maddybursell/Documents/ST 502/ST502-Final-Project/Doneck_Dolphins_a
 # 2. Posterior probability of compatibility-----------
 
 # Probability of being in the lineup
-posterior <- posterior_PIR
+posterior <- posterior_TS
 Lineups <- matrix(data = NA, nrow = 3000, ncol = 9)
 for(i in 1 : 3000){ #all the lineups
   Lineups[i, ] <- as.numeric(substring(posterior[i], seq(1,17, by = 2), 
@@ -28,8 +28,10 @@ for(i in 1 : 3000){
 }
 prob <- count / 3000
 
-
-players <- c(1, 2, 4, 9, 3) # indices of the players
+# to get the probability values in plots below, rerun for conditional prob
+# by changing the last player number in this players vector below
+# test the last player as 3, 5, 6, 7, and 8 and record cond prob
+players <- c(1, 2, 4, 9, 8) # indices of the players
 count <- 0
 for(i in 1 : 3000){
   logic <- as.numeric(Lineups[i, players] == rep(1, length(players)))
@@ -42,11 +44,12 @@ prob2 / prob # conditional probabilities
 # plot-----------
 
 p_player <- data.frame(Player = rep(c("D. Green", "L. Jung", "N. Passivan", 
-                                      "P. Dorner", "S. Erni"), 3),
+                                      "P. Dorner", "S. Erni"), 4),
                        Probability = c(0.16, 0.01, 0.24, 0.47, 0.12,
                                        0.19, 0.02, 0.25, 0.44, 0.10,
-                                       0.15, 0.04, 0.25, 0.34, 0.22),
-                       Metric=c(rep("EFF",5), rep("PIR",5), rep("Win Score",5)))
+                                       0.15, 0.04, 0.25, 0.34, 0.22,
+                                       0.23, 0.07, 0.23, 0.24, 0.22),
+                       Metric=c(rep("EFF",5), rep("PIR",5), rep("Win Score",5), rep("TS%",5)))
 
 library(ggplot2)
 library(viridis)
