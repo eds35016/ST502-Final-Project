@@ -1,6 +1,6 @@
-#################################################
-# BAYESIAN LINEUP OPTIMIZATION (dynamic for any n_players)
-#################################################
+#################################
+# BAYESIAN LINEUP OPTIMIZATION
+#################################
 
 library(lpSolve)
 
@@ -26,7 +26,7 @@ set.seed(9257)
 predictions <- model_prediction_type_sigmas(
   player = seq_len(n_players),
   type   = 'TS',
-  match  = 64 # number of games in the dataset + 1
+  match  = 33 # number of matches in the season + 1
 )
 n_sims <- ncol(predictions)
 
@@ -77,6 +77,7 @@ for (i in seq_len(n_sims)) {
   vals <- c(res2w$value, res1w$value, res0w$value)
   best <- which.max(vals)
   sel  <- list(res2w$selection, res1w$selection, res0w$selection)[[best]]
+  print(paste(which(sel == 1), collapse = " "))
 
   # record the 5 selected player‐IDs as a space‐separated string
   posterior[i] <- paste(which(sel == 1), collapse = " ")
