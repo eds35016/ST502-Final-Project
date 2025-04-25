@@ -67,20 +67,33 @@ API_URL = (
     "basketball/mens-college-basketball/summary?event={game_id}"
 )
 
-def fetch_boxscore_json(game_id):
+def fetch_game_data(game_id):
     """Return the per-team player blocks from ESPN's JSON."""
     resp = requests.get(API_URL.format(game_id=game_id), headers=HEADERS)
     resp.raise_for_status()
-    return resp.json()["boxscore"]["players"]
+    data = resp.json()
 
-def parse_boxscore_data(teams_data, game_id):
+    # 1) boxscore player blocks
+    players = data.get("boxscore", {}).get("players", [])
+
+    # 2) was NC State home?
+    is_home = False
+    comps = data.get("header", {}).get("competitions", [])
+    if comps:
+        for team_block in comps[0].get("competitors", []):
+            team = team_block.get("team", {})
+            abb = team.get("abbreviation", "")
+            name = team.get("displayName", "")
+            if abb.upper() == "NCSU" or name == "NC State Wolfpack":
+                is_home = (team_block.get("homeAway") == "home")
+                break
+
+    return players, is_home
+
+def parse_boxscore_data(teams_data, game_id, is_home):
     """
-    teams_data: list of two dicts, each with a 'statistics' list.
-    Each stat-group dict has:
-       - 'labels': list of column names (e.g. ["MIN","FG","3PT",…])
-       - 'athletes': list of player entries, each with:
-            • 'athlete' → {'displayName': …}
-            • 'stats': list of strings matching 'labels'
+    Turn ESPN's 'players' list into flat rows, filtering by PLAYERS,
+    and tagging each row with game_id + is_home.
     """
     rows = []
     for team_block in teams_data:
@@ -89,30 +102,31 @@ def parse_boxscore_data(teams_data, game_id):
             for entry in group.get("athletes", []):
                 name = entry["athlete"]["displayName"]
                 if name in PLAYERS:
-                    values = entry.get("stats", [])
-                    rec = dict(zip(labels, values))
+                    rec = dict(zip(labels, entry.get("stats", [])))
                     rec["player"]  = name
                     rec["game_id"] = game_id
+                    rec["is_home"] = is_home
                     rows.append(rec)
     return rows
 
 def main():
     all_rows = []
     for gid in GAME_IDS:
-        teams = fetch_boxscore_json(gid)
-        all_rows.extend(parse_boxscore_data(teams, gid))
+        teams, home_flag = fetch_game_data(gid)
+        all_rows.extend(parse_boxscore_data(teams, gid, home_flag))
 
     df = pd.DataFrame(all_rows)
-
     if df.empty:
         print("No matching stats found. Check that PLAYERS exactly match displayName values.")
         return
 
-    # game_id, player first
-    cols = ["game_id", "player"] + [c for c in df.columns if c not in ("game_id", "player")]
+    # reorder so game_id, player, is_home come first
+    front = ["game_id", "player", "is_home"]
+    cols = front + [c for c in df.columns if c not in front]
     df = df[cols]
-    
-    # For any games where players didn't play, fill in 0s for missing stats
+
+    # ensure bool type & fill missing
+    df["is_home"] = df["is_home"].astype(bool)
     df.fillna(0, inplace=True)
 
     print(df.to_string(index=False))

@@ -130,7 +130,7 @@ Trier_data <- data.frame(id_game = trier_data$id_game, player = trier_data$playe
                          EFF_per_min = trier_data$EFF_per_min,
                          Winscore_min = trier_data$Winscore_min,
                          TS_min = trier_data$TS_min,
-                         sex = trier_data$sex, class = trier_data$class)
+                         home = trier_data$home, sex = trier_data$sex, class = trier_data$class)
 
 
 

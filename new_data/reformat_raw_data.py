@@ -33,6 +33,8 @@ def reformat_stats(raw_csv_path: str) -> pd.DataFrame:
 
     # Convert minutes to HH:MM:SS for MP
     raw['MP'] = raw['MIN'].apply(lambda m: f"00:{int(m):02d}:00" if pd.notnull(m) else pd.NA)
+    
+    raw['home'] = raw['is_home'].replace({True: 1, False: 0})
 
     # Assemble final DataFrame
     df = pd.DataFrame({
@@ -47,6 +49,7 @@ def reformat_stats(raw_csv_path: str) -> pd.DataFrame:
         'misses_ft':  raw['misses_ft'],
         'turnovers':  raw['TO'],
         'fouls':      raw['PF'],
+        'home':       raw['home'],
         'FGM':        raw['FG_made'],
         'FGA':        raw['FG_att'],
         'FTM':        raw['FT_made'],
@@ -59,7 +62,7 @@ def reformat_stats(raw_csv_path: str) -> pd.DataFrame:
     # Reorder columns to template order
     template_cols = [
         'id_game', 'player', 'points', 'rebounds', 'assists', 'steals', 'blocks',
-        'misses', 'misses_ft', 'turnovers', 'fouls', 'FGM', 'FGA', 'FTM', 'FTA', '3PM', '3PA', 'MP'
+        'misses', 'misses_ft', 'turnovers', 'fouls', 'home', 'FGM', 'FGA', 'FTM', 'FTA', '3PM', '3PA', 'MP'
     ]
     df = df[template_cols]
 
