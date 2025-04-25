@@ -23,12 +23,20 @@ source('../../functions/NC_State_model_prediction_type_sigmas.R')
 
 # 3) get posterior samples of True‐Shooting for each player
 set.seed(9257)
+type <- 'Winscore' # metric to predict
 predictions <- model_prediction_type_sigmas(
   player = seq_len(n_players),
-  type   = 'TS',
+  type   = type,
   match  = 33 # number of matches in the season + 1
 )
 n_sims <- ncol(predictions)
+
+if (type == "TS"){
+  # since these values have been converted to a log scale, we need make them positive
+  # this is just a weird quirk needed to use lp(direction = "max")
+min_TS <- min(predictions)
+predictions <- predictions - min_TS + 1e-6
+}
 
 # 4) generic solver for “best lineup” under
 #    - exactly 5 players
@@ -77,7 +85,7 @@ for (i in seq_len(n_sims)) {
   vals <- c(res2w$value, res1w$value, res0w$value)
   best <- which.max(vals)
   sel  <- list(res2w$selection, res1w$selection, res0w$selection)[[best]]
-  print(paste(which(sel == 1), collapse = " "))
+  #print(paste(which(sel == 1), collapse = " "))
 
   # record the 5 selected player‐IDs as a space‐separated string
   posterior[i] <- paste(which(sel == 1), collapse = " ")
@@ -88,4 +96,4 @@ summary_TS   <- summary(as.factor(posterior))
 posterior_TS <- posterior
 
 save(summary_TS, posterior_TS,
-     file = '../../results/NC_State_data/NC_State_lineups_TS_sigmas.RData')
+     file = paste0('../../results/NC_State_data/NC_State_lineups_',type,'_sigmas.RData'))

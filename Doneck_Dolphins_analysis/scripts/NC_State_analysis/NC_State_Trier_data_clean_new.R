@@ -67,10 +67,9 @@ trier_data$Winscore_min[is.nan(trier_data$Winscore_min)]<-NA
 trier_data$TS_min[is.nan(trier_data$TS_min)]<-NA
 
 
-# 2. Factorizing home variable------------- # no home variable in NC State data
+# 2. Factorizing home variable-------------
 
-#trier_data$home[trier_data$home == 'Y'] <- 1
-#trier_data$home[trier_data$home == 'N'] <- 0
+# Already done for NC State data
 
 # 3. Player-----------
 
@@ -143,6 +142,11 @@ library(GLDEX)
 
 
 Trier_data$id_player <- as.numeric(as.factor(as.character(Trier_data$player)))
+
+# Set NA values to 0 for the EFF_per_min, Winscore_min and TS_min variables
+Trier_data$EFF_per_min[is.na(Trier_data$EFF_per_min)] <- 0
+Trier_data$Winscore_min[is.na(Trier_data$Winscore_min)] <- 0
+Trier_data$TS_min[is.na(Trier_data$TS_min)] <- 0
 
 save(Trier_data, file = '../../../new_data/NC_State_Trier_data_clean_new.RData')
 
