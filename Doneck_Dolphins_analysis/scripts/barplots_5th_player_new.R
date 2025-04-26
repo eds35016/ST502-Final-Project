@@ -59,3 +59,4 @@ ggplot(p_player, aes(x=Player, y=Probability, fill = Metric)) +
   scale_fill_viridis(discrete = TRUE, option = "D")+
   theme_test(base_size = 20, base_line_size = 15/20) +
   labs(x=element_blank())
+
