@@ -123,7 +123,7 @@ library(rjags)
 library(mcmcplots)
 
 # 1a) log‐transform (add a small offset to eliminate zero values)
-Trier_data$TS_trans <- log( Trier_data$TS_min + 1e-3 )
+Trier_data$TS_trans <- log( Trier_data$TS_min + 1e-1 )
 
 print(Trier_data$TS_trans)
 
