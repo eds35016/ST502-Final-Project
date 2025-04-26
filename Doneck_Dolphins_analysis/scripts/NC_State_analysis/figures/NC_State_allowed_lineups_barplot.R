@@ -1,4 +1,3 @@
-# Assumes your data is in 'lineups.tsv' with tabs between columns
 lineups <- read.table("../../../new_data/NC_State_line_ups.tsv",
                       header = TRUE,
                       sep    = "\t",

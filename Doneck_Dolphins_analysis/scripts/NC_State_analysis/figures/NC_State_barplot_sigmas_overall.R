@@ -1,4 +1,4 @@
-# 0)–– LOAD YOUR SAVED SUMMARIES ----------------------------------------
+# 0)–– LOAD SAVED SUMMARIES ----------------------------------------
 load('../../results/NC_State_data/NC_State_lineups_EFF_sigmas.RData')
 load('../../results/NC_State_data/NC_State_lineups_Winscore_sigmas.RData')
 load('../../results/NC_State_data/NC_State_lineups_TS_sigmas.RData')

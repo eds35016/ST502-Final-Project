@@ -1,4 +1,3 @@
-# Assumes your data is in 'lineups.tsv' with tabs between columns
 # load the data
 load("../../data/line_ups.RData")
 lineups <- line_ups

@@ -41,7 +41,7 @@ Trier_data$TS_trans <- Trier_data$TS_trans - min_TS + 1e-6 # to make it positive
 
 # 3)–– PLOT AND SAVE -------------------------------------------------------
 players  <- unique(Trier_data$player)
-players  <- as.character(players)           # coerce factor → character
+players  <- as.character(players)
 initials <- vapply(
   strsplit(players, " "),
   function(x) paste0(substr(x, 1, 1), collapse = ""),
@@ -49,13 +49,10 @@ initials <- vapply(
 )
 names(initials) <- players
 
-# pick a distinct palette (one colour per player)
-# e.g. use ggplot2’s default discrete hue palette:
 library(scales)
 pal        <- hue_pal()(length(players))
 player_cols <- setNames(pal, players)
 
-# now open your PDF
 pdf("../../figures/NC_State_data/NC_State_metrics_spaghetti_plots.pdf", width=12, height=6)
 
 make_spaghetti <- function(df, metric) {
@@ -78,11 +75,11 @@ make_spaghetti <- function(df, metric) {
       title = paste0(metric_title, " by Game"),
       x     = "Game Number",
       y     = metric_title,
-      color = "Player"     # legend title
+      color = "Player"
     ) +
     scale_color_manual(
-      values = player_cols,  # fixed mapping player → colour
-      labels = initials      # player → initials
+      values = player_cols, 
+      labels = initials
     ) +
     theme_minimal() +
     theme(

@@ -17,7 +17,7 @@ library(tidyr)
 library(ggplot2)
 library(purrr)
 
-# ─── 1) read your data_trier file, extract mapping ─────────────────────────────
+# ─── 1) read data_trier file, extract mapping ─────────────────────────────
 data_trier <- read_tsv("../../../new_data/NC_State_Trier_data_clean_new.txt", show_col_types=FALSE)
 id_map <- data_trier %>%
   select(id_player, player) %>%  # columns in your file
